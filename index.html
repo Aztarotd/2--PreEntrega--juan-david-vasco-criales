@@ -3,11 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preentrega 1 - juan david vasco criales</title>
- <link rel="stylesheet" href="styles.css">
+  <title>Tienda Virtual</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>OF Crew</h1>
+  <h1>Tienda de Ropa</h1>
+  <input type="text" id="busqueda" placeholder="Buscar producto...">
+  <button onclick="buscarProducto()">Buscar</button>
+  <br><br>
+  <label for="min-precio">Precio Mínimo:</label>
+  <input type="number" id="min-precio" placeholder="0">
+  <label for="max-precio">Precio Máximo:</label>
+  <input type="number" id="max-precio" placeholder="1000">
+  <button onclick="filtrarPorPrecio()">Filtrar por Precio</button>
   <div id="inventario">
     <h2>Productos Disponibles</h2>
     <div id="productos">
