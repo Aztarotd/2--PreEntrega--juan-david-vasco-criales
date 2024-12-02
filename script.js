@@ -1,17 +1,17 @@
 let inventario = [
-  { producto: "Jeans Azul Oscuro", precio: 500, cantidad: 10 },
-  { producto: "Jeans Clásicos", precio: 600, cantidad: 8 },
-  { producto: "Jeans Ajustados", precio: 550, cantidad: 12 },
-  { producto: "Camisa Blanca", precio: 200, cantidad: 20 },
-  { producto: "Camisa de Rayas", precio: 220, cantidad: 18 },
-  { producto: "Camisa Casual", precio: 250, cantidad: 15 },
-  { producto: "Camisa de Cuadros", precio: 300, cantidad: 10 },
-  { producto: "Zapatos Deportivos", precio: 800, cantidad: 10 },
-  { producto: "Zapatos Formales", precio: 900, cantidad: 5 },
-  { producto: "Zapatos Casual", precio: 850, cantidad: 8 }
+  { producto: "Jeans Azul Oscuro", precio: 50, cantidad: 10 },
+  { producto: "Jeans Clásicos", precio: 60, cantidad: 8 },
+  { producto: "Jeans Ajustados", precio: 55, cantidad: 12 },
+  { producto: "Camisa Blanca", precio: 20, cantidad: 20 },
+  { producto: "Camisa de Rayas", precio: 22, cantidad: 18 },
+  { producto: "Camisa Casual", precio: 25, cantidad: 15 },
+  { producto: "Camisa de Cuadros", precio: 30, cantidad: 10 },
+  { producto: "Zapatos Deportivos", precio: 80, cantidad: 10 },
+  { producto: "Zapatos Formales", precio: 90, cantidad: 5 },
+  { producto: "Zapatos Casual", precio: 85, cantidad: 8 }
 ];
 
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 function mostrarInventario(productos) {
   const productosDiv = document.getElementById("productos");
@@ -45,6 +45,7 @@ function mostrarCarrito() {
     total += item.precio * item.cantidad;
   });
   totalCarrito.innerText = total;
+  localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 function actualizarInventario(index) {
@@ -112,4 +113,13 @@ function filtrarPorPrecio() {
 
 document.addEventListener("DOMContentLoaded", () => {
   mostrarInventario(inventario);
+  mostrarCarrito();
+
+  document.getElementById("buscar-btn").addEventListener("click", buscarProducto);
+  document.getElementById("filtrar-precio-btn").addEventListener("click", filtrarPorPrecio);
+  document.getElementById("vaciar-carrito-btn").addEventListener("click", vaciarCarrito);
+
+  document.getElementById("busqueda").addEventListener("input", buscarProducto);
+  document.getElementById("min-precio").addEventListener("input", filtrarPorPrecio);
+  document.getElementById("max-precio").addEventListener("input", filtrarPorPrecio);
 });

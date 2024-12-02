@@ -9,13 +9,13 @@
 <body>
   <h1>Tienda de Ropa</h1>
   <input type="text" id="busqueda" placeholder="Buscar producto...">
-  <button onclick="buscarProducto()">Buscar</button>
+  <button id="buscar-btn">Buscar</button>
   <br><br>
   <label for="min-precio">Precio Mínimo:</label>
   <input type="number" id="min-precio" placeholder="0">
   <label for="max-precio">Precio Máximo:</label>
   <input type="number" id="max-precio" placeholder="1000">
-  <button onclick="filtrarPorPrecio()">Filtrar por Precio</button>
+  <button id="filtrar-precio-btn">Filtrar por Precio</button>
   <div id="inventario">
     <h2>Productos Disponibles</h2>
     <div id="productos">
@@ -28,7 +28,7 @@
       <!-- Items del carrito se generan aquí -->
     </div>
     <p>Total: $<span id="total-carrito">0</span></p>
-    <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+    <button id="vaciar-carrito-btn">Vaciar Carrito</button>
   </div>
 
   <script src="script.js"></script>
