@@ -1,28 +1,29 @@
-let inventario = [
-  { producto: "Jeans Azul Oscuro", precio: 50, cantidad: 10 },
-  { producto: "Jeans Clásicos", precio: 60, cantidad: 8 },
-  { producto: "Jeans Ajustados", precio: 55, cantidad: 12 },
-  { producto: "Camisa Blanca", precio: 20, cantidad: 20 },
-  { producto: "Camisa de Rayas", precio: 22, cantidad: 18 },
-  { producto: "Camisa Casual", precio: 25, cantidad: 15 },
-  { producto: "Camisa de Cuadros", precio: 30, cantidad: 10 },
-  { producto: "Zapatos Deportivos", precio: 80, cantidad: 10 },
-  { producto: "Zapatos Formales", precio: 90, cantidad: 5 },
-  { producto: "Zapatos Casual", precio: 85, cantidad: 8 }
-];
+let inventario = 
+[ { producto: "Jeans Azul Oscuro", precio: 50, cantidad: 10, imagen: "img/jeans oscuros.png" }, 
+  { producto: "Jeans Clásicos", precio: 60, cantidad: 8, imagen: "img/jeans clasicos.png" }, 
+  { producto: "Jeans Ajustados", precio: 55, cantidad: 12, imagen: "img/jeans ajustados.png" }, 
+  { producto: "Camisa Blanca", precio: 20, cantidad: 20, imagen: "img/camisa blnaca.png" }, 
+  { producto: "Camisa de Rayas", precio: 22, cantidad: 18, imagen: "img/camisa a rayas.png" }, 
+  { producto: "Camisa Casual", precio: 25, cantidad: 15, imagen: "img/camisa casual.png" }, 
+  { producto: "Camisa de Cuadros", precio: 30, cantidad: 10, imagen: "img/camisa a cuadros.png" }, 
+  { producto: "Zapatos Deportivos", precio: 80, cantidad: 10, imagen: "img/zapatos deportivos.png" }, 
+  { producto: "Zapatos Formales", precio: 90, cantidad: 5, imagen: "img/zapatos formales.png" }, 
+  { producto: "Zapatos Casual", precio: 85, cantidad: 8, imagen: "img/zapatos clasicos.png" } ];
 
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-function mostrarInventario(productos) {
+function mostrarInventario(productos = inventario) {
   const productosDiv = document.getElementById("productos");
   productosDiv.innerHTML = "";
   productos.forEach((item, index) => {
     productosDiv.innerHTML += `
       <div class="producto">
+        <div class="producto"> 
+        <img src="${item.imagen}" alt="${item.producto}" />
         <h3>${item.producto}</h3>
         <p>Precio: $${item.precio}</p>
         <p>Disponible: <span id="cantidad-${index}">${item.cantidad}</span></p>
-        <button onclick="agregarAlCarrito(${index})">Agregar al Carrito</button>
+        <button onclick="agregarAlCarrito(${index})" class="btn btn-success">Agregar al Carrito</button>
       </div>
     `;
   });
@@ -39,7 +40,7 @@ function mostrarCarrito() {
         <h3>${item.producto}</h3>
         <p>Precio: $${item.precio}</p>
         <p>Cantidad: ${item.cantidad}</p>
-        <button onclick="eliminarDelCarrito(${index})">Eliminar Uno</button>
+        <button onclick="eliminarDelCarrito(${index})" class="btn btn-warning">Eliminar Uno</button>
       </div>
     `;
     total += item.precio * item.cantidad;
@@ -63,6 +64,13 @@ function agregarAlCarrito(index) {
     }
     producto.cantidad -= 1;
     actualizarInventario(index);
+    Swal.fire({
+      icon: 'success',
+      title: 'Agregado',
+      text: 'Producto agregado al carrito',
+      showConfirmButton: false,
+      timer: 1500
+    });
   }
   mostrarCarrito();
 }
@@ -79,6 +87,13 @@ function eliminarDelCarrito(index) {
     productoInventario.cantidad += 1;
     actualizarInventario(inventario.indexOf(productoInventario));
   }
+  Swal.fire({
+    icon: 'warning',
+    title: 'Eliminado',
+    text: 'Producto eliminado del carrito',
+    showConfirmButton: false,
+    timer: 1500
+  });
   mostrarCarrito();
 }
 
@@ -92,6 +107,13 @@ function vaciarCarrito() {
   carrito = [];
   mostrarInventario(inventario);
   mostrarCarrito();
+  Swal.fire({
+    icon: 'error',
+    title: 'Carrito Vaciado',
+    text: 'Todos los productos han sido eliminados del carrito',
+    showConfirmButton: false,
+    timer: 1500
+  });
 }
 
 function filtrarProductos(busqueda) {
@@ -112,7 +134,7 @@ function filtrarPorPrecio() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  mostrarInventario(inventario);
+  mostrarInventario();
   mostrarCarrito();
 
   document.getElementById("buscar-btn").addEventListener("click", buscarProducto);

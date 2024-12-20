@@ -4,22 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tienda Virtual</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <h1>Tienda de Ropa</h1>
   <input type="text" id="busqueda" placeholder="Buscar producto...">
-  <button id="buscar-btn">Buscar</button>
+  <button id="buscar-btn" class="btn btn-primary">Buscar</button>
   <br><br>
   <label for="min-precio">Precio Mínimo:</label>
   <input type="number" id="min-precio" placeholder="0">
   <label for="max-precio">Precio Máximo:</label>
   <input type="number" id="max-precio" placeholder="1000">
-  <button id="filtrar-precio-btn">Filtrar por Precio</button>
+  <button id="filtrar-precio-btn" class="btn btn-primary">Filtrar por Precio</button>
   <div id="inventario">
     <h2>Productos Disponibles</h2>
     <div id="productos">
-      <!-- Productos se generan dinámicamente aquí -->
+      <div class="producto">
+        <img src="img/jeans_azul_oscuro.jpg" alt="Jeans Azul Oscuro" />
+        <h3>Jeans Azul Oscuro</h3>
+        <p>Precio: $50</p>
+        <p>Disponible: <span id="cantidad-0">10</span></p>
+        <button onclick="agregarAlCarrito(0)" class="btn btn-success">Agregar al Carrito</button>
+      </div>
+      <div class="producto">
+        <img src="img/jeans clasicos.png" alt="Jeans Clásicos" />
+        <h3>Jeans Clásicos</h3>
+        <p>Precio: $60</p>
+        <p>Disponible: <span id="cantidad-1">8</span></p>
+        <button onclick="agregarAlCarrito(1)" class="btn btn-success">Agregar al Carrito</button>
+      </div>
+      <div class="producto">
+        <img src="img/jeans ajustados.png" alt="Jeans Ajustados" />
+        <h3>Jeans Ajustados</h3>
+        <p>Precio: $55</p>
+        <p>Disponible: <span id="cantidad-2">12</span></p>
+        <button onclick="agregarAlCarrito(2)" class="btn btn-success">Agregar al Carrito</button>
+      </div>
+      <div class="producto">
+        <img src="img/camisa blnaca.png" alt="Camisa Blanca" />
+        <h3>Camisa Blanca</h3>
+        <p>Precio: $20</p>
+        <p>Disponible: <span id="cantidad-3">20</span></p>
+        <button onclick="agregarAlCarrito(3)" class="btn btn-success">Agregar al Carrito</button>
+      </div>
+      <div class="producto">
+        <img src="img/camisa a rayas.png" alt="Camisa de Rayas" />
+        <h3>Camisa de Rayas</h3>
+        <p>Precio: $22</p>
+        <p>Disponible: <span id="cantidad-4">18</span></p>
+        <button onclick="agregarAlCarrito(4)" class="btn btn-success">Agregar al Carrito</button>
+      </div>
+      <div class="producto">
+        <img src="img/camisa casual.png" alt="Camisa Casual" />
+        <h3>Camisa Casual</h3>
+        <p>Precio: $25</p>
+        <p>Disponible: <span id="cantidad-5">15</span></p>
+        <button onclick="agregarAlCarrito(5)" class="btn btn-success">Agregar al Carrito</button>
+      </div>
+      <div class="producto">
+        <img src="img/camisa a cuadros.png" alt="Camisa de Cuadros" />
+        <h3>Camisa de Cuadros</h3>
+        <p>Precio: $30</p>
+        <p>Disponible: <span id="cantidad-6">10</span></p>
+        <button onclick="agregarAlCarrito(6)" class="btn btn-success">Agregar al Carrito</button>
+      </div>
+      <div class="producto">
+        <img src="img/zapatos deportivos.png" alt="Zapatos Deportivos" />
+        <h3>Zapatos Deportivos</h3>
+        <p>Precio: $80</p>
+        <p>Disponible: <span id="cantidad-7">10</span></p>
+        <button onclick="agregarAlCarrito(7)" class="btn btn-success">Agregar al Carrito</button>
+      </div>
+      <div class="producto">
+        <img src="img/zapatos formales.png" alt="Zapatos Formales" />
+        <h3>Zapatos Formales</h3>
+        <p>Precio: $90</p>
+        <p>Disponible: <span id="cantidad-8">5</span></p>
+        <button onclick="agregarAlCarrito(8)" class="btn btn-success">Agregar al Carrito</button>
+      </div>
+      <div class="producto">
+        <img src="img/zapatos clasicos.png" alt="Zapatos Casual" />
+        <h3>Zapatos Casual</h3>
+        <p>Precio: $85</p>
+        <p>Disponible: <span id="cantidad-9">8</span></p>
+        <button onclick="agregarAlCarrito(9)" class="btn btn-success">Agregar al Carrito</button>
+      </div>
     </div>
   </div>
   <div id="carrito">
@@ -28,7 +99,7 @@
       <!-- Items del carrito se generan aquí -->
     </div>
     <p>Total: $<span id="total-carrito">0</span></p>
-    <button id="vaciar-carrito-btn">Vaciar Carrito</button>
+    <button id="vaciar-carrito-btn" class="btn btn-danger">Vaciar Carrito</button>
   </div>
 
   <script src="script.js"></script>
